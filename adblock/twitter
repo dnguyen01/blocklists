@@ -1,3 +1,7 @@
+! Title: Block Twitter filter
+! Expires: 1 day (update frequency)
+! Description: Filters for Twitter/X
+! Homepage: https://github.com/dnguyen01/blocklists/tree/main
 # Twitter
 ||0.twitter.com^
 ||2010.twitter.com^
