@@ -4,7 +4,7 @@
 ! Homepage: https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters
 ! License: MIT; https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=LICENSE
 ! Last modified: 
-! Version: 4.1.6.2
+! Version: 4.2.1.8
 
 ! General
 
@@ -27,7 +27,7 @@
 ||onecount.net^$third-party
 ||js.pelcro.com^$script,third-party
 /xbuilder/experience/execute$xmlhttprequest,~third-party,domain=~fortune.com
-||piano.io/xbuilder/experience/execute$xmlhttprequest,third-party
+||piano.io/xbuilder/experience/execute$xmlhttprequest,third-party,domain=~automobilwoche.de
 @@||piano.io^$domain=hbr.org|japantimes.co.jp
 @@||tinypass.com$script,domain=ajc.com|thelogic.co
 ||api.pico.tools/client/query/*$xmlhttprequest,~third-party
@@ -46,11 +46,13 @@ gadget.pico.tools##+js(json-prune, locked)
 /paywall/evercookie_get.js$script,~third-party
 /shared-content/art/tncms/api/access.*.js$script,~third-party
 /wp-content/plugins/leaky-paywall/js/leaky-paywall-cookie.js$script,~third-party
+/wp-content/plugins/newspack-plugin/dist/memberships-gate-metering.js$script,~third-party
 /wp-content/*/plugins/rcp-view-limit/$script,~third-party
 /zephr/feature$xmlhttprequest
 
 ||abril.com.br/*/abril-paywall/$script,~third-party
 adweek.com##+js(cookie-remover, blaize_session)
+||adweek.com/wp-content/plugins/adw-zephr/$script,~third-party
 ajc.com##+js(ra, class, div.story-paygate_placeholder, stay)
 ajc.com##div.video-blocker
 ajc.com##+js(set, window.Fusion.globalContent._id, 0)
@@ -69,10 +71,10 @@ asia.nikkei.com##div.tp-modal,div.tp-backdrop
 asia.nikkei.com##+js(rc, tp-modal-open, body.tp-modal-open, stay)
 magazine.atavist.com##+js(set-local-storage-item, /^/, $remove$)
 ||tonos.gjirafa.tech/init/access$xmlhttprequest,domain=atlantico.fr
-||automobilwoche.de/sites/camw/files/js/js_-YBiL*.js$script,~third-party
+automobilwoche.de##+js(set, window.Fusion.globalContent._id, 0)
+automobilwoche.de##+js(set, window.Fusion.globalContent.content_restrictions, {})
 axios.com##div[data-cy="pro-paywall"],div[class^="Modal_paywall"],div[class^="Modal_cta"]
 axios.com##+js(ra, style, html[style], stay)
-berlingske.dk##div#paywall
 bhaskar.com##div.paywallBlockedContent~div:remove()
 bhaskar.com##article div:empty
 bhaskar.com##+js(ra, class, div.paywallBlockedContent, stay)
@@ -106,8 +108,6 @@ cen.acs.org##+js(cookie-remover, cenLoginP)
 cen.acs.org##.meteredBar
 challenges.fr##div.amorce.manual
 challenges.fr##+js(ra, class|hidden, .user-paying-content)
-charliehebdo.fr##+js(ra, style, div.ch-paywalled-content)
-charliehebdo.fr##div#poool-widget
 ||cdn.piano.io/api/tinypass.min.js$script,domain=clicrbs.com.br
 ||clicrbs.com.br/paywall-api/count/$xmlhttprequest,~third-party
 cnbc.com##div.ArticleGate-proGate
@@ -117,6 +117,7 @@ cnn.com##+js(ra, style, html[style], stay)
 cnn.com##+js(ra, style, body[style], stay)
 cnn.com##+js(set-local-storage-item, /reg_?wall/i, $remove$)
 columbian.com##+js(cookie-remover, blaize_session)
+columbian.com##div.modal,div#onesignal-slidedown-container
 chronicle.com,philanthropy.com##div[data-content-summary]
 chronicle.com,philanthropy.com##+js(ra, hidden|ppajfrg86rdhoubtirllb2bf1xsaknzus, div[class~="contentBody" i][hidden], stay)
 citywire.com##+js(rc, article-locked, .article-locked)
@@ -133,7 +134,6 @@ citywire.com##registration-widget,div.alert--locked
 csmonitor.com##+js(set-local-storage-item, /^/, $remove$)
 csmonitor.com##.paywall
 cyclingnews.com##+js(rc, paywall-locker, div.paywall-locker)
-dagsavisen.no##+js(set, window.Fusion.globalContent.content_restrictions.content_code, 0)
 dailywire.com###post-body-text > div > div:style(height: auto !important;)
 ||denik.cz/*.html$inline-script
 discovermagazine.com##body:style(overflow: auto !important;)
@@ -211,8 +211,9 @@ indianexpress.com##ev-engagement
 ||liveapp.inews.co.uk/*/content.html$inline-script
 inkl.com##+js(ra, class, div.paywall)
 inkl.com##div.gradient-container
-interestingengineering.com##+js(rc, blurFilter, div.blurFilter, stay)
-interestingengineering.com##div.paywall-main-wrapper:remove()
+interestingengineering.com##body:style(overflow: auto !important; position: relative !important; top: unset !important)
+interestingengineering.com##main>div[class*="t-hidden"],div.t-bg-black
+irishexaminer.com/##+js(cookie-remover, blaize_session)
 japantimes.co.jp##+js(cookie-remover, xbc)
 journaldemontreal.com,journaldequebec.com##+js(rc, composer-content, div.article-main-txt.composer-content)
 journaldunet.com##div.reg_wall
@@ -240,6 +241,7 @@ lejdd.fr,parismatch.com,public.fr###poool-container,#poool-widget-content,#poool
 lejdd.fr,parismatch.com,public.fr##+js(ra, data-poool-mode, .cnt[data-poool-mode="hide"])
 ||livemint.com/lm-img/subscription/$script,~third-party
 livemint.com##+js(rc, paywall, div.paywall)
+livemint.com##div[class^="storyPaywall_paywallStory_"]:remove()
 labusinessjournal.com##+js(cookie-remover, /^/)
 labusinessjournal.com###css-only-modals
 ||lavoz.com.ar/sites/*/paywall/*/pw.js$script,third-party
@@ -272,7 +274,7 @@ nrc.nl##div[id$="modal__overlay"],div.header__subscribe-bar,div.banner
 ||nybooks.com/wp-admin/admin-ajax.php$xmlhttprequest,~third-party
 nybooks.com##+js(rc, paywall-article, .paywall-article)
 nybooks.com##div.toast-cta
-||nysun.com/zephr/$xmlhttprequest,~third-party
+||nysun.com/api/zephr/$xmlhttprequest,~third-party
 ||meter-svc.nytimes.com/meter.js$xmlhttprequest,~third-party
 ||nytimes.com/svc/onsite-messaging/query$xmlhttprequest,~third-party
 ||mwcm.nyt.com/$script,domain=nytimes.com
@@ -281,7 +283,7 @@ nytimes.com##div[data-testid="inline-message"],div[id^="ad-"],div#dock-container
 ||nzherald.co.nz/zephr/$xmlhttprequest,~third-party
 nzherald.co.nz##+js(set, window.Fusion.globalContent.isPremium, false)
 nzz.ch,themarket.ch##+js(rc, nzzinteraction, .nzzinteraction)
-/\/observador\.pt\/(\d{4}|especiais|opiniao)\//$inline-script,domain=observador.pt
+||observador.pt/wp-content/*/paywall-price-*.js$script,~third-party
 paloaltoonline.com##+js(cookie-remover, /^/)
 ||pastemagazine.com/wp-content/cache/autoptimize/js/autoptimize_*.js$script,~third-party
 pb.pl##+js(ra, class, section.o-article-content)
@@ -351,16 +353,14 @@ theatlantic.com##aside#paywall,div[class^="LostInventoryMessage_"]
 theglobeandmail.com##+js(set, window.Fusion.globalContent._id, 0)
 thehindu.com,thehindubusinessline.com##+js(set, window.Adblock, false)
 thehindu.com,thehindubusinessline.com##+js(set, window.isNonSubcribed, false)
-theimpression.com##+js(rc, blureffect, div.blureffect)
-theimpression.com##div#modalpostsubscribe
 ||theintercept.com$inline-script
 thelampmagazine.com##+js(ra, class, div.paywall-gradient)
 thelampmagazine.com##section.p-8
 thelogic.co##+js(cookie-remover, firstarticle)
 ||thenewatlantis.com/*/thenewatlantis/js/gate.js$script,~third-party
 ||thenewatlantis.com/*/thenewatlantis/js/donate.js$script,~third-party
-theneweuropean.co.uk##div[data-show-fade-on-noaccess],div[data-show-subs-blocked]
-theneweuropean.co.uk##+js(ra, data-show-has-access, div[data-show-has-access])
+thenewworld.co.uk##div[data-show-fade-on-noaccess],div[data-show-subs-blocked]
+thenewworld.co.uk##+js(ra, data-show-has-access, div[data-show-has-access])
 thepointmag.com##+js(cookie-remover, monthly_history)
 thepointmag.com##div.overlay,div#tpopup-
 thequint.com##div.zsqcu
@@ -381,9 +381,8 @@ tt.com##+js(rc, exclusive-elem, .exclusive-elem)
 tt.com##div.adblock-warning
 unherd.com##+js(ra, id, div#premiumcontent)
 unherd.com##div#premiumpreview
-||news.google.com/swg/_/api/v1/publication/$xmlhttprequest,domain=vice.com
 /\.vn\.at\/.+\/\d{4}\//$inline-script,domain=vn.at
-||washingtonpost.com/subscribe/static/tetro-client/fusion/tetro.min.js$script,~third-party
+||washingtonpost.com/*/tetro-client/$script,~third-party
 ||account.winnipegfreepress.com/api/v*/auth/identify$xmlhttprequest,~third-party
 winnipegfreepress.com##.billboard-ad-space,.ad,.article-ad,.fixed-sky
 
@@ -409,6 +408,8 @@ accountingtoday.com,americanbanker.com,benefitnews.com,bondbuyer.com,dig-in.com,
 voguebusiness.com##+js(cookie-remover, userId)
 
 ! Crain Communications
+adage.com,autonews.com##+js(set, window.Fusion.globalContent._id, 0)
+adage.com,autonews.com##+js(set, window.Fusion.globalContent.content_restrictions, {})
 .com/profiles/*/crain_pelcro_user.js$script,~third-party,domain=360dx.com|chicagobusiness.com|crainscleveland.com|crainsdetroit.com|crainsgrandrapids.com|crainsnewyork.com|genomeweb.com|modernhealthcare.com|plasticsnews.com|precisionmedicineonline.com|sustainableplastics.com|tirebusiness.com|utech-polyurethane.com
 .com/*/js_$script,~third-party,domain=pionline.com|rubbernews.com
 pionline.com,rubbernews.com##+js(ra, class, body[class], stay)
@@ -460,7 +461,7 @@ elmercurio.com##div[id*="bt_readmore_"]
 ||pasedigital.cl/API/User/Status$script,domain=australvaldivia.cl|mercuriovalpo.cl
 
 ! Grupo Prensa Ibérica
-diaridegirona.cat,diariocordoba.com,diariodeibiza.es,diariodemallorca.es,elcorreogallego.es,elcorreoweb.es,eldia.es,elperiodico.com,elperiodicodearagon.com,elperiodicoextremadura.com,elperiodicomediterraneo.com,epe.es,farodevigo.es,informacion.es,laopinioncoruna.es,laopiniondemalaga.es,laopiniondemurcia.es,laopiniondezamora.es,laprovincia.es,levante-emv.com,lne.es,mallorcazeitung.es,regio7.cat,superdeporte.es##+js(ra, class, div.ft-helper-closenews, stay)
+diaridegirona.cat,diariocordoba.com,diariodeibiza.es,diariodemallorca.es,elcorreogallego.es,elcorreoweb.es,eldia.es,elperiodico.com,elperiodicodearagon.com,elperiodicoextremadura.com,elperiodicomediterraneo.com,epe.es,farodevigo.es,informacion.es,laopinioncoruna.es,laopiniondemalaga.es,laopiniondemurcia.es,laopiniondezamora.es,laprovincia.es,levante-emv.com,lne.es,mallorcazeitung.es,regio7.cat,superdeporte.es##+js(rc, ft-helper-closenews, p.ft-helper-closenews, stay)
 
 ! Gruppo SAE
 gazzettadimodena.it,gazzettadireggio.it,iltirreno.it,lanuovaferrara.it,lanuovasardegna.it##+js(cookie-remover, /__mtr$/)
@@ -499,7 +500,7 @@ cz.de,dewezet.de,dieharke.de,dnn.de,gnz.de,goettinger-tageblatt.de,haz.de,kn-onl
 
 ! Mediahuis Noord
 ||ndcmediagroep.nl/js/evolok/$script,third-party
-.nl/_/zh/worker$xmlhttprequest,~third-party
+.nl/-api/zh/worker$xmlhttprequest,~third-party
 
 ! MediaNews Group & Tribune Publishing Company
 .com/wp-content/plugins/loader-wp/static/loader.min.js$script,~third-party
@@ -511,8 +512,8 @@ bostonherald.com,denverpost.com,eastbaytimes.com,mercurynews.com,ocregister.com,
 
 ! Oahu Publications
 staradvertiser.com##div.fade
-staradvertiser.com##+js(ra, style, div#hsa-paywall-content[style])
-staradvertiser.com##+js(rc, overflow-hidden, body.overflow-hidden)
+staradvertiser.com##+js(ra, style, div#hsa-paywall-content[style], stay)
+staradvertiser.com##+js(rc, overflow-hidden, body.overflow-hidden, stay)
 
 hawaiitribune-herald.com,thegardenisland.com,westhawaiitoday.com##+js(ra, style, div#single-paywall, stay)
 hawaiitribune-herald.com,thegardenisland.com,westhawaiitoday.com##div#single-login-box,div#single-excerpt
@@ -525,6 +526,7 @@ hawaiitribune-herald.com,thegardenisland.com,westhawaiitoday.com##div#single-log
 
 ! DPG ADR (no scroll)
 ||temptation.*/temptation.js$script,~third-party,domain=ad.nl|bd.nl|bndestem.nl|destentor.nl|ed.nl|gelderlander.nl|pzc.nl|tubantia.nl|hln.be
+||temptation.*/rest/$xmlhttprequest,~third-party,domain=ad.nl|bd.nl|bndestem.nl|destentor.nl|ed.nl|gelderlander.nl|pzc.nl|tubantia.nl|hln.be
 
 ! Private Media Australia
 crikey.com.au,smartcompany.com.au,themandarin.com.au##+js(cookie-remover, blaize_session)
@@ -555,12 +557,16 @@ beleggersbelangen.nl##div.unlimited-access
 computerweekly.com,lemagit.fr,techtarget.com##+js(rc, paywall, div.paywall, stay)
 computerweekly.com,lemagit.fr,techtarget.com##p#firstP,div#inlineRegistrationWrapper
 
-! The Epoch Times sites (main + cz|de|fr|il|jp|ro)
+! The Epoch Times sites (main + br|cz|de|fr|il|jp|ro)
 ||theepochtimes.com/rules/get$xmlhttprequest,~third-party
 ||epochbase.com/libs/paywall*.js$script,third-party
 ||epochbase.com/rules/get$xmlhttprequest,third-party
 ||epochbase.eu/rules/get$xmlhttprequest,third-party
 /\/epoch\.org\.il\/.+\/\d{5,}\//$inline-script,domain=epoch.org.il
+
+! The Local Group (EU)
+thelocal.at,thelocal.ch,thelocal.com,thelocal.de,thelocal.dk,thelocal.es,thelocal.fr,thelocal.it,thelocal.no,thelocal.se##+js(ra, style, div#articleBody, stay)
+thelocal.at,thelocal.ch,thelocal.com,thelocal.de,thelocal.dk,thelocal.es,thelocal.fr,thelocal.it,thelocal.no,thelocal.se##p#articleBodyForbidden,div.tl-ad-container,div.ml-manual-widget-container
 
 ! additional adblocker-fix
 ||flowerstreatment.com^$third-party
@@ -571,18 +577,23 @@ computerweekly.com,lemagit.fr,techtarget.com##p#firstP,div#inlineRegistrationWra
 ||jeuneafrique.com/cdn-cgi/trace$xmlhttprequest,~third-party
 ||assets.guim.co.uk/assets/SignInGate*.js$script,domain=theguardian.com
 theguardian.com##[name="SlotBodyEnd"],div[data-cy="contributions-liveblog-epic"]
-||btmessage.com/script/rlink.js$script,domain=telegraaf.nl
 
 @@||consentmanager.net$script,third-party
 #@#.cmpwrapper
+@@||cookielaw.org^$xmlhttprequest,domain=blick.ch
 @@||sdk.privacy-center.org^$script,third-party
 @@/wrapperMessagingWithoutDetection.js$script,~third-party,domain=handelsblatt.com
 !##div#didomi-host
 ##+js(rc, didomi-popup-open, body.didomi-popup-open)
+||htlbid.com$script,third-party
 
 ! flip-pay
 ||flip-pay.com/*/flip-pay.js$script,third-party,domain=clareecho.ie|thedailymash.co.uk
 clareecho.ie##+js(rc, td-post-content, div.td-post-content)
+
+! Wallkit
+##+js(ra, class, div.wkwp-paywall)
+##div.wkwp-paywall-block
 
 ! custom sites
 .com/webfiles/*/js/metering.js$script,third-party,domain=hbook.com|libraryjournal.com|slj.com
@@ -595,10 +606,15 @@ aftenposten.no##body:style(overflow: auto !important)
 aftenposten.no##+js(ra, class, div#summary-details)
 amboss.com##+js(cookie-remover, ssobma)
 amboss.com##div#optly-remaining-articles-banner,div[class^="InfoBanner_InfoBanner"]
-||anandabazar.com/subscription-assets/js/paywall.js$script,~third-party
-anandabazar.com##div.paywallouterbox
+||anandabazar.com/subscription-assets/js/paywall*.js$script,~third-party
+||anandabazar.com/*/cid/$inline-script
+anandabazar.com##div.paywallouterbox,div.readarticlebox,div.showmorebox
+anandabazar.com##+js(ra, class, div.readmoreouterbox, stay)
+anandabazar.com##+js(ra, id, article#outerboxarticlebox, stay)
+anandabazar.com##+js(ra, class, div.expcontainer, stay)
+||tinypass.com/api/tinypass.min.js$script,domain=arabianbusiness.com
+arabianbusiness.com##+js(ra, class, div.ev-meter-content, stay)
 ||arktimes.com/wp-content/plugins/newspack-plugin/dist/memberships-gate-metering.js$script,~third-party
-||artsprofessional.co.uk/*/js/content_paywall.js$script,~third-party
 ||atribuna.com.br/assets/js-v*/story.js$script,~third-party
 babi.sh##+js(ra, style, div[style*="filter:blur"], stay)
 babi.sh##+js(ra, style, div[style*="; overflow: hidden"][style*="; height:"], stay)
@@ -614,25 +630,29 @@ brainly.com,brainly.com.br##+js(set-local-storage-item, /^/, $remove$)
 brusselstimes.com##+js(ra, style, div[style*="height: 0;"], stay)
 businessden.com,richmondbizsense.com##+js(ra, class, div.cp-paywall-user)
 businessden.com,richmondbizsense.com##div#copperpress-paywall
+||nitrocdn.com/*/paywall.$script,domain=capitalaberto.com.br
 cardiologie-pratique.com##+js(ra, class, div.wrap-node, stay)
 cmcmarkets.com##+js(rc, activePaywall, .activePaywall)
 ||cnv-medien.de$inline-script
 connexionfrance.com##+js(cookie-remover, /^/)
 connexionfrance.com##div#subscribe-banner
+||diariodonordeste.verdesmares.com.br/js/com.atex.gong.paywall.membership.js$script,~third-party
 divisare.com##div.blocker
 divisare.com##+js(ra, style, body[style], stay)
 dominionpost.com##+js(rc, entry-content, article > div.entry-content)
 elfinancierocr.com##+js(ra, style, div.article-body-wrapper__styled[style])
 elfinancierocr.com##div.post
-energy-storage.news,pv-tech.org##+js(ra, class, div.wkwp-paywall)
-energy-storage.news,pv-tech.org##div.wkwp-paywall-block
 epaper.indiatimes.com##div.epaperBlockerWrap
 ||eviemagazine.com/api/trpc/post.paywall$xmlhttprequest,~third-party
 expressandstar.com,shropshirestar.com##+js(set, window.Fusion.globalContent.paywallStatus, false)
 ||fokus.se/app/plugins/sesamy-fpg/assets/js/sesamy-fpg.js$script,~third-party
+forbes.sk##+js(ra, style, div.post-content-soft-paywall, stay)
+forbes.sk##div#custom-html-locker
 ||golf.com/wp-content/themes/golf/compiled/js/wsumApp.js$script,~third-party
 gothamist.com##+js(rc, leadin, div.leadin, stay)
 gothamist.com##div.wall-wrapper
+hartfordbusiness.com##+js(ra, style, div.expandable-paywall-premium-content[style], stay)
+hartfordbusiness.com##div.paywall-container
 hcn.org##+js(ra, content, meta[name="UID"])
 heatmap.news##+js(ra, style, div.body-description, stay)
 heatmap.news##div.regwall-container
@@ -742,7 +762,6 @@ tidningenridsport.se##+js(ra, class|style, div.mctos)
 tidningenridsport.se##+js(rc, cli-barmodal-open, body.cli-barmodal-open)
 tidningenridsport.se##div.locked
 trailsoffroad.com##.paywall
-vl.no##+js(set, window.Fusion.globalContent.content_restrictions.content_code, 0)
 ||zeitzeichen.net/sites/default/files/js/js_*.js$script,~third-party
 
 ! General (amp)
@@ -750,16 +769,15 @@ vl.no##+js(set, window.Fusion.globalContent.content_restrictions.content_code, 0
 ||ampproject.org/*/amp-subscriptions-$script
 @@||ampproject.org/v0/amp-consent-$script
 
-artnet.com,bostonglobe.com,dallasnews.com,latimes.com,sandiegouniontribune.com,staradvertiser.com##+js(ra, subscriptions-section, [subscriptions-section="content"])
-artnet.com,bostonglobe.com,dallasnews.com,latimes.com,sandiegouniontribune.com,staradvertiser.com##[subscriptions-section="content-not-granted"]
-amp.usatoday.com,digiday.com,inc42.com,indianexpress.com,indiatoday.in,mid-day.com,telegraph.co.uk##+js(ra, amp-access-hide, [amp-access][amp-access-hide])
+artnet.com,bostonglobe.com,dallasnews.com,latimes.com,sandiegouniontribune.com##+js(ra, subscriptions-section, [subscriptions-section="content"])
+artnet.com,bostonglobe.com,dallasnews.com,latimes.com,sandiegouniontribune.com##[subscriptions-section="content-not-granted"]
+digiday.com,inc42.com,indianexpress.com,indiatoday.in,mid-day.com,telegraph.co.uk##+js(ra, amp-access-hide, [amp-access][amp-access-hide])
 
 ! French/Belgian sites
 amp.elle.fr,challenges.fr,sciencesetavenir.fr##+js(ra, amp-access-hide, [amp-access][amp-access-hide])
 ! Groupe IPM
-dhnet.be,lalibre.be,lavenir.net##+js(rc, is-preview, div.preview)
-dhnet.be,lalibre.be,lavenir.net##+js(rc, is-hidden, div.is-hidden)
-dhnet.be,lalibre.be,lavenir.net##div.ap-AdContainer,div.ap-Outbrain
+dhnet.be,lalibre.be,lavenir.net,moustique.be##+js(rc, is-preview, div.preview)
+dhnet.be,lalibre.be,lavenir.net,moustique.be##+js(rc, is-hidden, div.is-hidden)
 
 ! Australia News Corp
 adelaidenow.com.au,cairnspost.com.au,codesports.com.au,couriermail.com.au,dailytelegraph.com.au,geelongadvertiser.com.au,goldcoastbulletin.com.au,heraldsun.com.au,ntnews.com.au,theaustralian.com.au,thechronicle.com.au,themercury.com.au,townsvillebulletin.com.au,weeklytimesnow.com.au##+js(ra, subscriptions-section, [subscriptions-section="content"])
